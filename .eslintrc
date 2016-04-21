@@ -1,0 +1,15 @@
+{
+  "extends": "airbnb/base",
+  "globals": {
+    "Application": true,
+    "Library": true,
+    "Path": true,
+    "Alias": true,
+    "Folder": true,
+    "delay": true
+  },
+  "rules": {
+    "new-cap": ["error", {"capIsNewExceptions": ["Application", "Library", "Path", "Folder"]}],
+    "no-console": 0
+  }
+}
