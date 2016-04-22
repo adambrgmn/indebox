@@ -8,7 +8,7 @@ const config = {
   dropboxName: 'Dropbox',
   stdPath: 'path/to/default/folder',
   stdFileTypes: ['dyn.ah62d4rv4ge80w5xequ'],
-  stdFileEndings: 'indd',
+  stdFileEnding: 'indd',
   rest: false,
   restUrl: '',
   errors: {
@@ -18,16 +18,23 @@ const config = {
     },
     matchError: {
       title: 'InDeBox',
-      subtitle: 'The file is used by [user]',
       message: '[name].[extension] is used',
-    },
-    recentlyOpenedError: {
-      title: 'InDeBox',
-      subtitle: 'The file was opened by [user]',
-      message: '[name].[extension] was opened just a few seconds ago',
     },
   },
 };
+
+/**
+ * These settings are relevant if you're
+ * connecting to a Firebase rest api.
+ */
+if (config.rest) {
+  config.errors.matchError.subtitle = 'The file is used by [user]';
+  config.errors.recentlyOpenedError = {
+    title: 'InDeBox',
+    subtitle: 'The file was opened by [user]',
+    message: '[name].[extension] was opened just a few seconds ago',
+  };
+}
 
 /**
  * Use this if-statment to make special changes to config

@@ -1,25 +1,13 @@
-import { join } from 'path';
-import { currentApp, systemEvents, finder, dropboxDir } from '../utils';
-import { changeFileUser, getFileUser, fileRecentlyOpened } from '../user';
-import config from 'config';
+import { systemEvents } from '../system';
+import { changeFileUser, fileData } from '../api';
+import chooseFile from '../chooseFile';
+import config from '../config';
 
 export default class File {
   constructor(item) {
-    if (!item) {
-      let defaultLocation = join(dropboxDir, config.stdPath);
-      const pathExists = finder.exists(Path(defaultLocation));
-      defaultLocation = pathExists ? defaultLocation : dropboxDir;
-
-      this._choosenFile = currentApp.chooseFile({
-        withPrompt: 'Choose file',
-        ofType: config.stdFileTypes,
-        defaultLocation,
-      });
-    } else {
-      this._choosenFile = item;
-    }
-
+    this._choosenFile = !item ? chooseFile() : item;
     this._alias = systemEvents.aliases.byName(this._choosenFile.toString());
+    this._fileData = config.rest ? fileData(this.name) : null;
   }
 
   get choosenFile() {
@@ -29,10 +17,15 @@ export default class File {
   get name() {
     const filename = this._alias.name().split('.');
     filename.pop();
+
     return filename.join();
   }
 
   get path() {
+    return this._alias.container().posixPath();
+  }
+
+  get folder() {
     return systemEvents.folders.byName(this.path).diskItems.name();
   }
 
@@ -41,11 +34,23 @@ export default class File {
   }
 
   get user() {
-    return getFileUser(this.name);
+    if (this._fileData) {
+      return this._fileData.username;
+    }
+
+    return null;
   }
 
   get recentlyOpened() {
-    return fileRecentlyOpened(this.name);
+    if (this._fileData) {
+      const lastOpened = this._fileData.date;
+      const now = Date.now();
+      const timeFromNow = now - lastOpened;
+
+      return timeFromNow < 10000;
+    }
+
+    return null;
   }
 
   changeUser() {
