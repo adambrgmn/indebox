@@ -9,7 +9,7 @@
     "test": "osascript .tmp/app.js",
     "build": "webpack && osacompile -o dist/Indebox.app -l JavaScript .tmp/app.min.js && npm run build:icon && npm run build:copy && npm run build:template",
     "build:icon": "iconutil -c icns -o icons/src/applet.icns icons/applet.iconset && iconutil -c icns -o icons/src/document_icon.icns icons/document_icon.iconset",
-    "build:template": "mustache package.json src/Info.mustache > dist/Indebox.app/Contents/Info.plist",
+    "build:template": "mustache package.json templates/info.mustache > dist/Indebox.app/Contents/Info.plist",
     "build:copy": "cp -a icons/src/. dist/Indebox.app/Contents/Resources"
   },
   "repository": {
