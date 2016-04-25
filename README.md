@@ -1,11 +1,12 @@
 # Indebox
-A middlehand between InDesign and Dropbox to make them work together so that you can work your magic.
+A middle hand between InDesign and Dropbox to make them work together so that you can work your magic.
 
 ## Table of index
 - The issue
 - The solution
 -- How it works
 - Download and instructions
+-- Requirements
 - Contribute
 - Code introduction
 -- The tools
@@ -14,6 +15,7 @@ A middlehand between InDesign and Dropbox to make them work together so that you
 -- The source code
 - The `.idlk`-files
 - Rest Api
+- Disclaimer
 
 ## The issue
 At our company we recently started using Dropbox for Business as our cloud-server solution. It's really great! But we have one problem.
@@ -40,6 +42,10 @@ But on the other hand, if there are no `.idlk`-files present the file will open 
 3.4. And before you leave, don't forget to click Change all. 
 
 Now all your `.indd`-files will open with Indebox and hopefully you won't encounter any disasters.
+
+### Requirements
+- OS X El Capitan 10.11.4 (It will probably work for earlier versions as well)
+- Adobe InDesign CC 2015 (this one is important, in the future i will try to make it work with other versions of InDesign as well)
 
 ## Contribute
 This is a project that evolved from a need at the company I'm currently working on. A need to be able to co-operate with InDesign-documents synced over Dropbox.
@@ -284,6 +290,10 @@ The config-file is mainly an object containing som keys and some properties.
 - `rest`: This one i exciting. You can hook your app up against a rest api and get some extras. Read more down below.
 - `restUrl`: Same as above.
 - `errors`: Messages and titles related to different types of errors for you to maybe make more personal, or translate if you like.
+-- `messages`: In the messages you can use som variables that will change to the correct value. The ones available are:
+--- `[name]`: The filename, without extension
+--- `[extension]`: The file extension
+--- `[user]`: The one who uses the document (only available if the rest api is enabled.
 
 Use `if (process.env.NODE_ENV !== 'production')`to make different changes during production. Say you're developing at home without InDesign installed. Then you can change the standard application to Preview.
 
@@ -402,7 +412,8 @@ const config = {
   rest: true // change it to true
   restUrl: https://yourresturl.com/
   (...)
-}
+};
+```
 
 Now the app will try to make api calls everytime you open it (don't worry, it wont crash if you loose internet connection or if anything is wrong, it can handle these errors).
 
@@ -417,4 +428,34 @@ Create a new app and copy the new app-url.
 const config = {
   (...)
   rest: true
-  restUrl: https://yourappname.firebaseio.com
+  restUrl: 'https://yourappname.firebaseio.com/'
+  (...)
+};
+```
+
+That's it. Now the app will prevent you from opening a file if it was opened the last 10 seconds (to account for sync of the `.idlk`-files). And you can also make use of the new variable `[user]`when composing the error notifications (see more below).
+
+### Your own api
+Soon!
+
+### Error notifications
+When you connect to a rest api you will have the ability to see who is using a file that you can't open. But in order to make it work you have to tweak the error messages:
+
+```javascript
+// src/config.js
+
+(...)
+
+if (config.rest) {
+  config.errors.matchError.subtitle = 'The file is used by [user]';
+  config.errors.recentlyOpenedError = {
+    title: 'InDeBox',
+    subtitle: 'The file was opened by [user]',
+    message: '[name].[extension] was opened just a few seconds ago',
+  };
+};
+```
+
+## Disclaimer
+This project is purely personal and I hope you won't hold me accountable for any harm done.
+To put it short: It works for me and I really hope it works for you.
