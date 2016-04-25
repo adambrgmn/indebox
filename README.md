@@ -217,7 +217,7 @@ That's a bit heavier to comprehend i guess. File is actually a class. Classes ar
 
 After the construction-function you can see a whole lot of get-functions. These a utilized in the app and are quite self explanatory. Mainly it returns a corresponding value.
 
-The last three functions (get user(), get recentlyOpened() and changeUser() might baffle you. To give you a hint they are awesome. To read more about them check out the rest api-section.
+The last three functions (`get user()`, `get recentlyOpened()` and `changeUser()` might baffle you. To give you a hint they are awesome. To read more about them check out the rest api-section.
 
 #### Process File
 This function is also part of the backbone of this app. It processes each file to see if there might be any trouble opening the file or not.
