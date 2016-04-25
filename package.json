@@ -6,10 +6,11 @@
   "main": "src/index.js",
   "scripts": {
     "start": "webpack --watch",
-    "test": "osascript build/app.js",
-    "template": "mustache package.json src/Info.mustache > build/Indebox.app/Contents/Info.plist",
-    "copy": "cp -a icons/. build/Indebox.app/Contents/Resources",
-    "build": "webpack && osacompile -o build/Indebox.app -l JavaScript ./build/app.min.js && npm run copy && npm run template"
+    "test": "osascript .tmp/app.js",
+    "build": "webpack && osacompile -o dist/Indebox.app -l JavaScript .tmp/app.min.js && npm run build:icon && npm run build:copy && npm run build:template",
+    "build:icon": "iconutil -c icns -o icons/src/applet.icns icons/applet.iconset && iconutil -c icns -o icons/src/document_icon.icns icons/document_icon.iconset",
+    "build:template": "mustache package.json src/Info.mustache > dist/Indebox.app/Contents/Info.plist",
+    "build:copy": "cp -a icons/src/. dist/Indebox.app/Contents/Resources"
   },
   "repository": {
     "type": "git",

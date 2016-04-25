@@ -10,7 +10,7 @@ const PATHS = {
     app: path.join(__dirname, 'src'),
   },
   output: {
-    path: path.join(__dirname, 'build'),
+    path: path.join(__dirname, '.tmp'),
     filename: '[name].js',
   },
 };
@@ -48,6 +48,7 @@ if (TARGET === 'start' || !TARGET) {
           NODE_ENV: JSON.stringify('development'),
         },
       }),
+      new CleanPlugin([PATHS.output.path]),
     ],
   });
 }
@@ -65,7 +66,7 @@ if (TARGET === 'build') {
         compress: { warnings: false, screw_ie8: true },
       }),
       new JxaPlugin(),
-      new CleanPlugin([path.join(__dirname, 'build')]),
+      new CleanPlugin([PATHS.output.path]),
     ],
   });
 }
