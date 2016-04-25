@@ -276,7 +276,7 @@ const config = {
   },
 };
 
-// (...)
+// // (...)
 
 export default config;
 ```
@@ -290,10 +290,10 @@ The config-file is mainly an object containing som keys and some properties.
 - `rest`: This one i exciting. You can hook your app up against a rest api and get some extras. Read more down below.
 - `restUrl`: Same as above.
 - `errors`: Messages and titles related to different types of errors for you to maybe make more personal, or translate if you like.
--- `messages`: In the messages you can use som variables that will change to the correct value. The ones available are:
---- `[name]`: The filename, without extension
---- `[extension]`: The file extension
---- `[user]`: The one who uses the document (only available if the rest api is enabled.
+  - `messages`: In the messages you can use som variables that will change to the correct value. The ones available are:
+    - `[name]`: The filename, without extension
+    - `[extension]`: The file extension
+    - `[user]`: The one who uses the document (only available if the rest api is enabled.
 
 Use `if (process.env.NODE_ENV !== 'production')`to make different changes during production. Say you're developing at home without InDesign installed. Then you can change the standard application to Preview.
 
@@ -408,10 +408,10 @@ The first one is simple:
 ```javascript
 // src/config.js
 const config = {
-  (...)
+  // (...)
   rest: true // change it to true
   restUrl: https://yourresturl.com/
-  (...)
+  // (...)
 };
 ```
 
@@ -426,10 +426,10 @@ Create a new app and copy the new app-url.
 
 ```javascript
 const config = {
-  (...)
+  // (...)
   rest: true
   restUrl: 'https://yourappname.firebaseio.com/'
-  (...)
+  // (...)
 };
 ```
 
@@ -444,7 +444,7 @@ When you connect to a rest api you will have the ability to see who is using a f
 ```javascript
 // src/config.js
 
-(...)
+// (...)
 
 if (config.rest) {
   config.errors.matchError.subtitle = 'The file is used by [user]';
