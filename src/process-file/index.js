@@ -4,11 +4,11 @@ import notify from '../notify';
 import config from '../config';
 
 export default function processFile(file) {
-  match(file, (obj) => {
-    app.open(obj.choosenFile);
+  match(file, (item) => {
+    app.open(item.choosenFile);
     app.activate();
 
-    if (config.rest) obj.changeUser();
+    if (config.rest) item.changeUser();
   }, (err) => {
     notify(err);
   });
