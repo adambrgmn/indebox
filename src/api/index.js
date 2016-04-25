@@ -1,10 +1,11 @@
+import { join } from 'path';
 import { currentApp } from '../system';
 import { username } from '../user';
 import config from '../config';
 
 function curl(filename, params) {
   let put;
-  const url = `${config.restUrl}/${filename}.json`;
+  const url = join(config.restUrl, 'fileuser', `${filename}.json`);
 
   if (params) {
     put = `-X PUT -d '${JSON.stringify(params)}'`;
