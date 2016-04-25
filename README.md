@@ -454,6 +454,8 @@ if (config.rest) {
     message: '[name].[extension] was opened just a few seconds ago',
   };
 };
+
+// (...)
 ```
 
 ## Disclaimer
