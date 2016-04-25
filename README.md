@@ -1,6 +1,20 @@
 # Indebox
 A middlehand between InDesign and Dropbox to make them work together so that you can work your magic.
 
+## Table of index
+- The issue
+- The solution
+-- How it works
+- Download and instructions
+- Contribute
+- Code introduction
+-- The tools
+-- The file structure
+-- Webpack/Babel
+-- The source code
+- The `.idlk`-files
+- Rest Api
+
 ## The issue
 At our company we recently started using Dropbox for Business as our cloud-server solution. It's really great! But we have one problem.
 We create a monthly magazine, and therefore we do a lot of work in Adobe InDesign, also a great tool. And when you open an InDesign-file (`.indd`) it creates a sort of lock-file (`.idlk`). This file is read by InDesign and will prevent anyone else from opening the file and create havoc.
@@ -16,7 +30,7 @@ Indebox is a normal app, you put it in your Applications-folder on your computer
 Indebox will do it's work silently and you will not notice it. But under the hood it actually does a hard check to see if any `.idlk`-files are present in the same directory as the document. If so the document won't open and a disaster is prevented. 
 But on the other hand, if there are no `.idlk`-files present the file will open as usual with InDesign and you can work your magic.
 
-## Instructions
+## Download and instructions
 1. Download the [Indebox-app](https://adambrgmn.github.io/indebox), that's a good start.
 2. But the app in your Applications-folder
 3. I recommend you to also set Indebox as the default app for opening `.indd`-files.
@@ -224,6 +238,12 @@ export default function processFile(file) {
 
 `processFile()` takes one argument, a file. This file is then matched against different types of arguments to see if its possible to open the file or not. If not it will open it with InDesign. Otherwise it will send a notification telling you why it can't be opened.
 
+`match()` is the function that does these checks. It takes three arguments:
+
+- `file`: The file-object
+- `resolve`: A callback that gets fired if everything is alright
+- `reject`: A callback that get fired if there are som problems
+
 #### Config
 `config.js` is where you can make some tweaks to make the app fit your needs.
 
@@ -250,23 +270,12 @@ const config = {
   },
 };
 
-if (config.rest) {
-  config.errors.matchError.subtitle = 'The file is used by [user]';
-  config.errors.recentlyOpenedError = {
-    title: 'InDeBox',
-    subtitle: 'The file was opened by [user]',
-    message: '[name].[extension] was opened just a few seconds ago',
-  };
-}
-
-if (process.env.NODE_ENV !== 'production') {
-  config.stdApp = 'Adobe InDesign CC 2015';
-}
+// (...)
 
 export default config;
 ```
 
-It mainly an object containing som keys and some properties.
+The config-file is mainly an object containing som keys and some properties.
 - `stdApp`: The full name of the the InDesign app, change this when InDesign updates to other version.
 - `dropboxName`: The name of your Dropbox-directory. If you're only using a personal account it will probably just be called "Dropbox". But if you are using a Business-account it will be called "Dropbox (<company name>)".
 - `stdPath`: If you have all your files in on directory inside Dropbox you can make the app always open inside that directory by defining a path to it. Remember that it's relative to the Dropbox-directory. `E.g. Customers/Projects`
@@ -275,3 +284,137 @@ It mainly an object containing som keys and some properties.
 - `rest`: This one i exciting. You can hook your app up against a rest api and get some extras. Read more down below.
 - `restUrl`: Same as above.
 - `errors`: Messages and titles related to different types of errors for you to maybe make more personal, or translate if you like.
+
+Use `if (process.env.NODE_ENV !== 'production')`to make different changes during production. Say you're developing at home without InDesign installed. Then you can change the standard application to Preview.
+
+#### The rest of the files
+The code should be properly commented for you to understand how it all works. But if you have any questions or notice any bugs open an [issue](https://github.com/adambrgmn/indebox/issues).
+
+## The `.idlk`-files
+### How InDesign handles this
+I thing we need to talk a little about InDesigns so-called lock-files.
+
+As I described earlier, once you open a document with InDesign it will create a `.idlk`-file in the same directory as your document. You can see it pop up in Finder. But to be honest I don't know how it really works, I can only presume.
+
+The file is always 0K, which means it's empty. No data, nothing. But what I have noticed, and what I guess is the only difference  has to do with ownership.
+
+I can illustrate this for you.
+
+First open your document with InDesign. Then, with the Terminal, go to that folder and list all files.
+
+```bash
+$ cd project/folder
+$ ls -la # The -la gives you a little bit more to work with
+total 1920
+drwxr-xr-x  4 adam  staff     136 25 Apr 15:46 .
+drwx------+ 4 adam  staff     136 25 Apr 15:46 ..
+-rw-r--r--@ 1 adam  staff  983040 25 Apr 15:46 my-document.indd
+-rw-r--r--@ 1 adam  staff       0 25 Apr 15:46 ~my-document~-5oow5.idlk
+```
+
+The interesting part here is the two lines in the bottom. It's my document and the corresponding `.idlk`-file, because its open. And as you see my name is present there as well.
+
+In our old system we used a physical server here at our office. And if I do the same check in that folder on the server the owner of the file is still `adam`. But if I instead do the same procedure but in my Dropbox-folder and take a look at the folder from my collegues computer something is different.
+
+```bash
+...
+-rw-r--r--@ 1 collegue  staff  983040 25 Apr 15:46 my-document.indd
+-rw-r--r--@ 1 collegue  staff       0 25 Apr 15:46 ~my-document~-5oow5.idlk
+```
+
+This is because Dropbox creates new files on every computer that syncs with it, and then the owner of the files will always be the one using the computer. This is normally no problem, but the issues arise when the ownership is important.
+
+My guess then.
+
+I believe that when InDesign opens a document it checks for any presence of a corresponding `.idlk`-file. It it's there InDesign will see who's the owner of that file. If the owner is someone else than the one trying to open the file it means that someone else is using it somewhere else. And InDesign will prevent you from opening.
+
+But in the case of Dropbox + InDesign the `.idlk`-files, and all other files, will always be owned by you. And InDesign can't see that there is any problem for you to open it. And once again – disaster.
+
+### How Indebox handles this
+Indebox ignores the fact that someone can own a file or not. Cause the fact is that if a corresponding `.idlk`-file exists the document is open and you should not open it. And if you yourself has it open you can just click on the InDesign-icon in the dock and continue with your life.
+
+As easy as that.
+
+## REST API
+Already plugged in to the app is the option to connect it to a rest api. This will give you some extra features:
+
+- See who uses the file
+- Account for same time opening
+
+```javascript
+// src/api/index.js
+
+import { currentApp } from '../system';
+import { username } from '../user';
+import config from '../config';
+
+function curl(filename, params) {
+  let put;
+  const url = `${config.restUrl}/${filename}.json`;
+
+  if (params) {
+    put = `-X PUT -d '${JSON.stringify(params)}'`;
+  }
+
+  const shellScript = `curl ${put} '${url}'`;
+
+  try {
+    return currentApp.doShellScript(shellScript);
+  } catch (err) {
+    return false;
+  }
+}
+
+export function changeFileUser(filename) {
+  const params = {
+    date: Date.now(),
+    username,
+  };
+
+  return curl(filename, params);
+}
+
+export function fileData(filename) {
+  return curl(filename);
+}
+```
+
+It's quite simple actually (as many other things in this app). The api has two public functions `changeUser(filename)` and `fileData(filename)`.
+
+### The functions
+`fileData()` accepts one argument, the filename (which you can fetch if you call `file.name`, assuming that file is an instance of the file class).
+
+It utilizes the `curl`-function to get json-data from the api and returns the data as an object.
+
+`changeFileUser()` also accepts one argument, the filename (which you can fetch if you call `file.name`, assuming that file is an instance of the file class).
+
+It utilizes the `curl`-function and puts the data via the api. The data provided is the current user and the time in unix milliseconds.
+
+### The settings
+To enable this feature you need to do two things – change the settings and get hold of an api.
+
+The first one is simple:
+
+```javascript
+// src/config.js
+const config = {
+  (...)
+  rest: true // change it to true
+  restUrl: https://yourresturl.com/
+  (...)
+}
+
+Now the app will try to make api calls everytime you open it (don't worry, it wont crash if you loose internet connection or if anything is wrong, it can handle these errors).
+
+The hard part is to choose a rest api. I recommend the easy way: [Firebase](https://www.firebase.com/).
+
+### Firebase api
+Go to Firebase and set up free account. If run a small business it might be enough with the free choice, if you're bigger it might cost a little depending on how many api calls you do.
+
+Create a new app and copy the new app-url.
+
+```javascript
+const config = {
+  (...)
+  rest: true
+  restUrl: https://yourappname.firebaseio.com
