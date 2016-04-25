@@ -1,5 +1,8 @@
-build
+.tmp
 test.js
+
+# Icons
+*.ai
 
 # Logs
 logs
