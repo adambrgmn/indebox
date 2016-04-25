@@ -4,15 +4,15 @@ A middle hand between InDesign and Dropbox to make them work together so that yo
 ## Table of index
 - The issue
 - The solution
--- How it works
+  - How it works
 - Download and instructions
--- Requirements
+  - Requirements
 - Contribute
 - Code introduction
--- The tools
--- The file structure
--- Webpack/Babel
--- The source code
+  - The tools
+  - The file structure
+  - Webpack/Babel
+  - The source code
 - The `.idlk`-files
 - Rest Api
 - Disclaimer
@@ -29,7 +29,7 @@ Indebox works as a sort of middlehand, or middleware, in between Dropbox and InD
 
 ### How it works
 Indebox is a normal app, you put it in your Applications-folder on your computer and use it to open `.indd`-files (se more detailed instructions below).
-Indebox will do it's work silently and you will not notice it. But under the hood it actually does a hard check to see if any `.idlk`-files are present in the same directory as the document. If so the document won't open and a disaster is prevented. 
+Indebox will do it's work silently and you will not notice it. But under the hood it actually does a hard check to see if any `.idlk`-files are present in the same directory as the document. If so the document won't open and a disaster is prevented.
 But on the other hand, if there are no `.idlk`-files present the file will open as usual with InDesign and you can work your magic.
 
 ## Download and instructions
@@ -39,7 +39,7 @@ But on the other hand, if there are no `.idlk`-files present the file will open 
 3.1. In Finder, go to any directory containing a InDesign-file
 3.2. Right-click on it and choose Show info
 3.3. Under Open with choose Indebox (you might have to find it your self if Finder the system doesn't do it for you.
-3.4. And before you leave, don't forget to click Change all. 
+3.4. And before you leave, don't forget to click Change all.
 
 Now all your `.indd`-files will open with Indebox and hopefully you won't encounter any disasters.
 
@@ -75,7 +75,7 @@ $ npm install
 
 *(If you don't understand what the lines above means – do some reading about the command line and Terminal.)*
 
-The app is a small so called *applet*. It's written in [JavaScript for Automation](https://developer.apple.com/library/mac/releasenotes/InterapplicationCommunication/RN-JavaScriptForAutomation/Articles/Introduction.html) (JXA), a language developed by Apple for you to be able to make small apps written in JavaScript. 
+The app is a small so called *applet*. It's written in [JavaScript for Automation](https://developer.apple.com/library/mac/releasenotes/InterapplicationCommunication/RN-JavaScriptForAutomation/Articles/Introduction.html) (JXA), a language developed by Apple for you to be able to make small apps written in JavaScript.
 
 The api differs in a some ways from the normal JavaScript in the browser or on the server. Therefore I recommend you to read a little about it, the [JXA Cookbook](https://github.com/dtinth/JXA-Cookbook) is a good start.
 
@@ -117,7 +117,7 @@ In short Webpack goes into the entry `src/index.js` and brings in all of its dep
 After that it adds some lines of code (JxaPlugin) before and after the main code. This code is necessary for it to work with JXA.
 
 ### The source code
-I want to give you a short introduction to how this app works and cover the four most important files. 
+I want to give you a short introduction to how this app works and cover the four most important files.
 
 The story begins with one small file called `index.js`.
 
