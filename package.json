@@ -1,13 +1,15 @@
 {
   "name": "indebox",
+  "pretty_name": "Indebox",
   "version": "0.0.0",
   "description": "A middlehand between InDesign and Dropbox to make them work together",
   "main": "src/index.js",
   "scripts": {
     "start": "webpack --watch",
     "test": "osascript build/app.js",
-    "copy": "cp -a static/icons/. build/'Open InDesign.app'/Contents/Resources && cp -a static/Info.plist build/'Open InDesign.app'/Contents/",
-    "build": "webpack && osacompile -o build/'Open InDesign.app' -l JavaScript ./build/app.min.js && npm run copy"
+    "template": "mustache package.json src/Info.mustache > build/Indebox.app/Contents/Info.plist",
+    "copy": "cp -a icons/. build/Indebox.app/Contents/Resources",
+    "build": "webpack && osacompile -o build/Indebox.app -l JavaScript ./build/app.min.js && npm run copy && npm run template"
   },
   "repository": {
     "type": "git",
@@ -20,7 +22,11 @@
     "ES2015",
     "Eslint"
   ],
-  "author": "Adam Bergman <adam@fransvilhelm.com> (http://fransvilhelm.com/)",
+  "author": {
+    "name": "Adam Bergman",
+    "email": "adam@fransvilhelm.com",
+    "url": "http://fransvilhelm.com/"
+  },
   "contributors": [
     "Adam Bergman <adam@fransvilhelm.com> (http://fransvilhelm.com/)"
   ],
@@ -43,6 +49,7 @@
     "eslint-config-airbnb": "^6.2.0",
     "eslint-loader": "^1.3.0",
     "json-loader": "^0.5.4",
+    "mustache": "^2.2.1",
     "uglify-js": "^2.6.2",
     "webpack": "^1.13.0",
     "webpack-merge": "^0.12.0"
