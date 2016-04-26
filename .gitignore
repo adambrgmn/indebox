@@ -1,6 +1,5 @@
+# Temporary dev folder
 .tmp
-test.js
-bower_components
 
 # Icons
 *.ai
