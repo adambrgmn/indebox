@@ -1,0 +1,95 @@
+- var manifest = htmlWebpackPlugin.files.manifest
+doctype html
+<!--[if lt IE 7 ]><html lang="en" class="ie6" manifest=manifest><![endif]-->
+<!--[if IE 7 ]><html lang="en" class="ie7" manifest=manifest><![endif]-->
+<!--[if IE 8 ]><html lang="en" class="ie8" manifest=manifest><![endif]-->
+<!--[if IE 9 ]><html lang="en" class="ie9" manifest=manifest><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+html(lang="en", class="no-js", manifest=manifest)
+  <!--<![endif]-->
+  head
+    meta(charset="utf-8")
+    meta(name="description", content="Indebox an app that makes Dropbox and InDesign work together")
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+    title
+      | #{htmlWebpackPlugin.options.title} | #{htmlWebpackPlugin.options.tagline}
+    each file, index in htmlWebpackPlugin.files.css
+      link(href=file, rel="stylesheet")
+  body
+    header.header
+      .svgObjects
+        svg.svgObject.svgWave(xmlns="http://www.w3.org/2000/svg", viewBox="0 0 400 70")
+          path.svgWaveObject(d="M366.18,70c-18.65,0-33.82-15.7-33.82-35A13.67,13.67,0,1,0,305,35c0,19.3-15.17,35-33.82,35S237.4,54.3,237.4,35a13.67,13.67,0,1,0-27.31,0c0,19.3-15.17,35-33.82,35s-33.82-15.7-33.82-35a13.67,13.67,0,1,0-27.31,0c0,19.3-15.17,35-33.82,35S47.48,54.3,47.48,35A13.92,13.92,0,0,0,33.82,20.87,13.92,13.92,0,0,0,20.17,35H0C0,15.7,15.17,0,33.82,0S67.64,15.7,67.64,35A13.67,13.67,0,1,0,95,35c0-19.3,15.17-35,33.82-35S162.6,15.7,162.6,35a13.67,13.67,0,1,0,27.31,0c0-19.3,15.17-35,33.82-35s33.82,15.7,33.82,35a13.66,13.66,0,1,0,27.31,0c0-19.3,15.17-35,33.82-35s33.82,15.7,33.82,35a13.67,13.67,0,1,0,27.31,0H400C400,54.3,384.83,70,366.18,70Z")
+        svg.svgObject.svgTriangle(xmlns="http://www.w3.org/2000/svg", viewBox="0 0 270 190")
+          polygon.svgTriangleObject(points="0 190 270 190 135 0 0 190")
+        svg.svgObject.svgSquare2(xmlns="http://www.w3.org/2000/svg", viewBox="0 0 240 630")
+          rect.svgSquare2Object(width="240", height="630")
+        svg.svgObject.svgSquare1(xmlns="http://www.w3.org/2000/svg", viewBox="0 0 240 100")
+          rect.svgSquare1Object(width="240", height="100")
+        svg.svgObject.svgLine(xmlns="http://www.w3.org/2000/svg", viewBox="0 0 10 170")
+          rect.svgLineObject(width="10", height="170")
+        svg.svgObject.svgDots(xmlns="http://www.w3.org/2000/svg", viewBox="-1 -1 112 46")
+          g.svgDotsGroup
+            circle.svgDotsObjectBottom(cx="25", cy="25", r="20")
+            circle.svgDotsObjectTop(cx="20", cy="20", r="20")
+            circle.svgDotsObjectBottom(cx="90", cy="25", r="20")
+            circle.svgDotsObjectTop(cx="85", cy="20", r="20")
+        svg.svgObject.svgCircle(xmlns="http://www.w3.org/2000/svg", viewBox="0 0 195 192")
+          path.svgCircleObject2(d="M95,2A95,95,0,0,0,70,188.66l25-43.33,25,43.33A95,95,0,0,0,95,2Z")
+          path.svgCircleObject1(d="M100,0A95,95,0,0,0,75,186.66l25-43.33,25,43.33A95,95,0,0,0,100,0Z")
+        svg.svgObject.svgBanner(xmlns="http://www.w3.org/2000/svg", viewBox="0 0 120 140")
+          path.svgBannerObject(d="M0,0V110l60,30,60-30V0H0ZM60,87.5A17.5,17.5,0,1,1,77.5,70,17.5,17.5,0,0,1,60,87.5Z")
+
+      .headerTitleContainer
+        h1.headerTitle
+          a.headerTitleLink(href="#")
+            | #{htmlWebpackPlugin.options.title}
+
+      .headerSubtitleContainer
+        p.headerSubtitle
+          | A middlehand between InDesign and Dropbox to make them work together
+
+      .headerButtonContainer
+        svg.headerButtonClipPath
+          defs
+            clipPath#clipBox(clipPathUnits="objectBoundingBox")
+              polygon(points="0,0 0,1 0.35,1 0.35,0.6 0.65,0.6 0.65,1 1,1 1,0")
+        button.headerButton
+          span.headerButtonIcon
+            svg.headerButtonIconArrow(xmlns="http://www.w3.org/2000/svg", viewBox="0 0 400 400")
+              polygon(points="388.28 239.69 210 368.15 210 0 190 0 190 368.15 11.71 239.69 0 255.9 200 400 400 255.9 388.28 239.69")
+          span.headerButtonSpan
+            | Download Indebox
+
+    .cooperation
+      h2.cooperationTitle
+        | For better cooperation
+      p.cooperationParagraph
+        | Indebox is a small, almost invisible, app that will make your teams daily work easier.
+      p.cooperationParagraph
+        | It will make Dropbox and InDesign work together.
+
+
+
+    //- <div class="issue">
+    //-   <h2 class="issueTitle">The issue</h2>
+    //-   <p class="issueParagraph">InDesign is a great tool. And so is Dropbox. But they don't work that great together, as you may have noticed. If you sync InDesign-documents with Dropbox a disaster may occur if one of your collegues open the same document as you.</p>
+    //- </div>
+
+    //- <div class="solution">
+    //-   <h2 class="mainTitle">The solution</h2>
+    //-   <p class="mainParagraph">Indebox to the rescue! Install Indebox and use it to open InDesign-files. And you won't event notice it, your work will just be better.</p>
+    //-   <p class="mainParagraph">Read more about installation <a href="#">here</a></p>
+    //- </div>
+
+    //- <div class="download">
+    //-   <h2 class="downloadTitle">Download Indebox</h2>
+    //- </div>
+
+    //- <footer class="footer">
+    //-   <p>This app is made as a personal project. It works for me, and I hope it works for you!</p>
+    //- </footer>
+
+    each file, key in htmlWebpackPlugin.files.chunks
+      script(src=file.entry)
+</html>

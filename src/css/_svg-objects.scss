@@ -1,0 +1,82 @@
+.svgObject {
+  position: absolute;
+  z-index: 0;
+}
+
+.svgWave {
+  width: 50%;
+  top: 40%;
+  left: 60%;
+  .svgWaveObject {
+    fill: #333333;
+  }
+}
+
+.svgTriangle {
+  width: 30%;
+  top: -2%;
+  left: 75%;
+  .svgTriangleObject {
+    fill: #ff0000;
+  }
+}
+
+.svgSquare1 {
+  width: 25%;
+  top: 0;
+  left: 10%;
+  .svgSquare1Object {
+    fill: #85f7d8;
+  }
+}
+
+.svgSquare2 {
+  width: 25%;
+  bottom: 0;
+  left: 10%;
+  .svgSquare2Object {
+    fill: #85f7d8;
+  }
+}
+
+.svgLine {
+  width: 3%;
+  top: 60%;
+  left: 80%;
+  .svgLineObject {
+    fill: #85f7d8;
+  }
+}
+
+.svgDots {
+  width: 20%;
+  top: 5%;
+  left: 40%;
+  .svgDotsObjectTop {
+    fill: #0000ff;
+  }
+  .svgDotsObjectBottom {
+    fill: #000075;
+  }
+}
+
+.svgCircle {
+  width: 30%;
+  top: 45%;
+  left: 45%;
+  .svgCircleObject1 {
+    fill: #fcff83;
+  }
+  .svgCircleObject2 {
+    fill: #c1c167;
+  }
+}
+
+.svgBanner {
+  width: 15%;
+  top: 15%;
+  left: 8%;
+  .svgBannerObject {
+    fill: #fcff83;
+  }
+}

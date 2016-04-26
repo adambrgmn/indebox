@@ -1,0 +1,133 @@
+.header {
+  position: relative;
+  overflow: hidden;
+  height: 100vh;
+  padding: 0 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #f57153;
+}
+
+.headerTitleContainer, .headerSubtitleContainer, .headerButtonContainer {
+  z-index: 1;
+}
+
+.headerTitleContainer {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.headerTitle {
+  margin: 0;
+  font-size: 4rem;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.headerTitleLink {
+  color: #0000ff;
+  text-decoration: none;
+  &:hover {
+    color: #000075;
+  }
+}
+
+.headerSubtitleContainer {
+  width: 100%;
+  text-align: center;
+}
+
+.headerSubtitle {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.headerButtonContainer {
+  width: 100%;
+  padding-bottom: 65px;
+}
+
+.headerButton {
+  border: none;
+  padding: 0px;
+  overflow: hidden;
+  width: 255px;
+  display: block;
+  margin: 0 auto;
+  background: none;
+  color: inherit;
+  vertical-align: middle;
+  position: relative;
+  z-index: 1;
+  backface-visibility: hidden;
+}
+
+.headerButton:focus {
+  outline: none;
+}
+
+.headerButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 2px solid;
+  // clip-path: url(#clipBox);
+  clip-path: polygon(50% 76%, 0% 100%, 100% 100%);
+  transform: translate3d(0, 100%, 0) translate3d(0, -2px, 0);
+  transform-origin: 50%, 100%;
+  transition: transform 0.3s;
+  transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+}
+
+.headerButtonIcon {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  padding: 0;
+  margin-bottom: -10px;
+  font-size: 1em;
+  transform: translate3d(-50%, 0, 0);
+  transition: transform 0.3s;
+  transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+}
+
+.headerButtonIconArrow {
+  width: 40px;
+  height: 40px;
+}
+
+.headerButtonSpan {
+  display: block;
+  padding: 20px;
+  vertical-align: 0.3s;
+  transition: transform 0.3s, opacity 0.3s;
+  transition-delay: 0.3s;
+}
+
+
+.headerButton:hover::before {
+  transform: translate3d(0, 0, 0);
+}
+
+.headerButton:hover .headerButtonIcon {
+  transition-delay: 0.3s;
+  transform: translate3d(-50%, -100%, 0);
+}
+
+.headerButton:hover .headerButtonSpan {
+  opacity: 0;
+  transform: translate3d(0, -50%, 0);
+  transition-delay: 0s;
+}
+
+.headerButtonClipPath {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  pointer-events: none;
+}

@@ -1,0 +1,8 @@
+<svg id="svgDots" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 110 45">
+  <g id="svgDotsGroup" data-name="Dots">
+    <circle class="svgDotsObjectTop" cx="25" cy="25" r="20" />
+    <circle class="svgDotsObjectBottom" cx="20" cy="20" r="20" />
+    <circle class="svgDotsObjectTop" cx="90" cy="25" r="20" />
+    <circle class="svgDotsObjectBottom" cx="85" cy="20" r="20" />
+  </g>
+</svg>

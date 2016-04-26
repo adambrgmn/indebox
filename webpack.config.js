@@ -5,11 +5,13 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const StatsPlugin = require('stats-webpack-plugin');
+const autoprefixer = require('autoprefixer');
+const pkg = require('./package.json');
 
 const TARGET = process.env.npm_lifecycle_event;
 const PATHS = {
   app: path.join(__dirname, 'src/js'),
-  style: path.join(__dirname, 'src/css'),
+  style: path.join(__dirname, 'src/css/main.scss'),
   build: path.join(__dirname, 'dist'),
 };
 
@@ -26,6 +28,7 @@ const common = {
   output: {
     path: PATHS.build,
     publicPath: '/',
+    chunkFilename: '[hash].js',
   },
   module: {
     loaders: [
@@ -35,6 +38,9 @@ const common = {
       },
     ],
   },
+  postcss: function () {
+    return [autoprefixer];
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.jade',
@@ -42,6 +48,7 @@ const common = {
       appMountId: 'app',
       filename: 'index.html',
       title: 'Indebox',
+      subtitle: 'Make InDesign and Dropbox work together',
     }),
     new webpack.optimize.OccurenceOrderPlugin(),
   ],
@@ -50,6 +57,16 @@ const common = {
 if (TARGET === 'start' || !TARGET) {
   module.exports = merge(common, {
     devtool: 'eval-source-map',
+    devServer: {
+      contentBase: PATHS.build,
+      historyApiFallback: true,
+      hot: false,
+      inline: true,
+      progress: true,
+      stats: 'errors-only',
+      host: process.env.HOST,
+      port: process.env.PORT,
+    },
     output: {
       filename: '[name].js',
     },
@@ -58,19 +75,18 @@ if (TARGET === 'start' || !TARGET) {
         {
           test: /\.jsx?$/,
           include: PATHS.app,
-          loader: 'babel?cacheDirectory',
+          loader: 'babel',
           query: {
-            presets: ['react', 'es2015', 'stage-0', 'react-hmre'],
+            presets: ['es2015', 'stage-0'],
           },
         },
         {
           test: /\.scss$/,
-          loaders: ['style', 'css', 'sass'],
+          loaders: ['style', 'css', 'postcss', 'sass'],
         },
       ],
     },
     plugins: [
-      new webpack.HotModuleReplacementPlugin(),
       new webpack.NoErrorsPlugin(),
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify('development'),
@@ -81,7 +97,12 @@ if (TARGET === 'start' || !TARGET) {
 
 if (TARGET === 'build') {
   module.exports = merge(common, {
-    output: '[name].[hash].js',
+    entry: {
+      vendor: Object.keys(pkg.dependencies).filter((v) => v !== ''),
+    },
+    output: {
+      filename: 'js/[name].[hash].js',
+    },
     module: {
       loaders: [
         {
@@ -89,18 +110,18 @@ if (TARGET === 'build') {
           include: PATHS.app,
           loader: 'babel',
           query: {
-            presets: ['react', 'es2015', 'stage-0'],
+            presets: ['es2015', 'stage-0'],
           },
         },
         {
           test: /\.scss$/,
-          loader: ExtractTextPlugin.extract('style', 'css', 'sass'),
+          loader: ExtractTextPlugin.extract('style', 'css!postcss!sass'),
         },
       ],
     },
     plugins: [
-      new ExtractTextPlugin('[name].[hash].min.css'),
-      new webpack.optimize.UgilfyJsPlugin({
+      new ExtractTextPlugin('css/[name].[hash].min.css'),
+      new webpack.optimize.UglifyJsPlugin({
         compressor: {
           warnings: false,
           screw_ie8: true,
@@ -113,6 +134,10 @@ if (TARGET === 'build') {
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify('production'),
       }),
+      new webpack.optimize.CommonsChunkPlugin({
+        name: ['vendor', 'manifest'],
+      }),
+      new CleanPlugin(['dist']),
     ],
   });
 }

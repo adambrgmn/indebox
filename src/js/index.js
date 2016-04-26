@@ -1,2 +1,1 @@
-const myName = 'Adam';
-console.log(`My name is ${myName}`);
+console.log('Hello world!');

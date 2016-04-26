@@ -1,0 +1,22 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto+Mono);
+// bower:scss
+// endbower
+
+@import "svg-objects";
+@import "header";
+@import "cooperation";
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+body {
+  background: #fafafa;
+  font-family: 'Roboto Mono', monospace;
+  color: #333;
+}

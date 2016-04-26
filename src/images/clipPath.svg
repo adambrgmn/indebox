@@ -1,0 +1,7 @@
+<svg class="headerButtonClipPath">
+  <defs>
+    <clipPath id="clipBox" clipPathUnits="objectBoundingBox">
+      <polygon fill="black" points="0,0 0,1 0.35,1 0.35,0.6 0.65,0.6 0.65,1 1,1 1,0" />
+    </clipPath>
+  </defs>
+</svg>
