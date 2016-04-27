@@ -9,7 +9,22 @@
   left: 60%;
   animation: svgWaveAnimation 10s ease-in-out infinite;
   .svgWaveObject {
-    fill: #333333;
+    fill: $black;
+  }
+  @media screen and (min-width: $break-small) {
+    width: 25%;
+    top: 80%;
+    left: 80%;
+  }
+  @media screen and (min-width: $break-medium) {
+    width: 25%;
+    top: 30%;
+    left: 80%;
+  }
+  @media screen and (min-width: $break-xlarge) {
+    width: 20%;
+    top: 50%;
+    left: 85%;
   }
 }
 
@@ -31,7 +46,22 @@
   left: 75%;
   animation: svgTriangleAnimation 5s ease-in-out infinite;
   .svgTriangleObject {
-    fill: #ff0000;
+    fill: $red;
+  }
+  @media screen and (min-width: $break-small) {
+    width: 10%;
+    top: -5%;
+    left: 90%;
+  }
+  @media screen and (min-width: $break-medium) {
+    width: 30%;
+    top: -2%;
+    left: 75%;
+  }
+  @media screen and (min-width: $break-xlarge) {
+    width: 10%;
+    top: -2%;
+    left: 90%;
   }
 }
 
@@ -53,7 +83,16 @@
   left: 10%;
   animation: svgSquare1Animation 5s ease-in-out infinite;
   .svgSquare1Object {
-    fill: #85f7d8;
+    fill: $turqoise;
+  }
+  @media screen and (min-width: $break-small) {
+    width: 10%;
+  }
+  @media screen and (min-width: $break-medium) {
+    width: 30%;
+  }
+  @media screen and (min-width: $break-xlarge) {
+    width: 5%;
   }
 }
 
@@ -75,7 +114,16 @@
   left: 10%;
   animation: svgSquare2Animation 5s ease-in-out infinite;
   .svgSquare2Object {
-    fill: #85f7d8;
+    fill: $turqoise;
+  }
+  @media screen and (min-width: $break-small) {
+    width: 10%;
+  }
+  @media screen and (min-width: $break-medium) {
+    width: 30%;
+  }
+  @media screen and (min-width: $break-xlarge) {
+    width: 5%;
   }
 }
 
@@ -97,7 +145,20 @@
   left: 80%;
   animation: svgLineAnimation 8s ease-in-out infinite;
   .svgLineObject {
-    fill: #85f7d8;
+    fill: $turqoise;
+  }
+  @media screen and (min-width: $break-small) {
+    display: none;
+  }
+  @media screen and (min-width: $break-medium) {
+    display: block;
+    width: 1%;
+    top: 80%;
+    left: 95%;
+  }
+  @media screen and (min-width: $break-xlarge) {
+    width: 2%;
+    top: 60%;
   }
 }
 
@@ -118,11 +179,22 @@
   top: 5%;
   left: 40%;
   .svgDotsObjectTop {
-    fill: #0000ff;
+    fill: $blue;
   }
   .svgDotsObjectBottom {
     animation: svgDotsObjectBottomAnimation 4s ease-in-out infinite;
-    fill: #000075;
+    fill: $bluedark;
+  }
+  @media screen and (min-width: $break-small) {
+    width: 10%;
+    top: 2%;
+    left: 45%;
+  }
+  @media screen and (min-width: $break-medium) {
+    width: 30%;
+  }
+  @media screen and (min-width: $break-xlarge) {
+    width: 10%;
   }
 }
 
@@ -147,7 +219,18 @@
     fill: #fcff83;
   }
   .svgCircleObject2 {
-    fill: #c1c167;
+    fill: $yellowdark;
+  }
+  @media screen and (min-width: $break-small) {
+    width: 10%;
+    top: 60%;
+    left: 60%;
+  }
+  @media screen and (min-width: $break-medium) {
+    width: 30%;
+  }
+  @media screen and (min-width: $break-xlarge) {
+    width: 10%;
   }
 }
 
@@ -166,7 +249,16 @@
   left: 8%;
   animation: svgBannerAnimation 2s linear infinite;
   .svgBannerObject {
-    fill: #fcff83;
+    fill: $yellow;
+  }
+  @media screen and (min-width: $break-small) {
+    width: 5%;
+    top: 25%;
+    left: 13%;
+  }
+  @media screen and (min-width: $break-medium) {
+    width: 10%;
+    top: 20%;
   }
 }
 

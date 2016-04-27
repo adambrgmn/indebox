@@ -4,13 +4,38 @@
   justify-content: center;
   padding: 0 25px;
   min-height: 75vh;
-  background: #85f7d8;
+  background: $turqoise;
+  @media screen and (min-width: $break-small) {
+    flex-direction: row;
+    align-items: center;
+  }
+  @media screen and (min-width: $break-large) {
+    padding: 0 15%;
+  }
 }
+
+.cooperationTitle {
+  @media screen and (min-width: $break-small) {
+    padding-right: 25px;
+  }
+}
+
+.cooperationParagraphContainer {
+  @media screen and (min-width: $break-small) {
+    padding-left: 25px;
+    border-left: 2px solid $black;
+  }
+}
+
 .cooperationTitle {
   margin: 0 0 2rem 0;
   font-size: 2rem;
   line-height: 1.2;
 }
+
 .cooperationParagraph {
   margin: 0 0 1rem 0;
+  &:last-child {
+    margin: 0;
+  }
 }

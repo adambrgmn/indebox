@@ -4,7 +4,27 @@
   justify-content: center;
   min-height: 75vh;
   padding: 0 25px;
-  background: #f57153;
+  background: $tomato;
+  @media screen and (min-width: $break-small) {
+    flex-direction: row;
+    align-items: center;
+  }
+  @media screen and (min-width: $break-large) {
+    padding: 0 15%;
+  }
+}
+
+.solutionTitle {
+  @media screen and (min-width: $break-small) {
+    padding-right: 25px;
+  }
+}
+
+.solutionParagraphContainer {
+  @media screen and (min-width: $break-small) {
+    padding-left: 25px;
+    border-left: 2px solid $black;
+  }
 }
 
 .solutionTitle {
@@ -15,4 +35,7 @@
 
 .solutionParagraph {
   margin: 0 0 1rem 0;
+  &:last-child {
+    margin: 0;
+  }
 }

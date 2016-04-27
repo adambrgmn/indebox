@@ -65,36 +65,39 @@ html(lang="en", class="no-js", manifest=manifest)
 
     .cooperation
       h2.cooperationTitle For better cooperation
-      p.cooperationParagraph
-        | Indebox is a small, almost invisible, app that will make your teams daily work easier.
-      p.cooperationParagraph
-        | It will make Dropbox and InDesign work together.
+      .cooperationParagraphContainer
+        p.cooperationParagraph
+          | Indebox is a small, almost invisible, app that will make your teams daily work easier.
+        p.cooperationParagraph
+          | It will make Dropbox and InDesign work together.
 
     .issue
       h2.issueTitle The issue
-      p.issueParagraph
-        | InDesign is a great tool. And so is Dropbox. But they don't work that great together, as you may have noticed.
-      p.issueParagraph
-        | If you sync InDesign-documents with Dropbox a disaster may occur if one of your collegues open the same document as you.
+      .issueParagraphContainer
+        p.issueParagraph
+          | InDesign is a great tool. And so is Dropbox. But they don't work that great together, as you may have noticed.
+        p.issueParagraph
+          | If you sync InDesign-documents with Dropbox a disaster may occur if one of your collegues open the same document as you.
 
     .solution
       h2.solutionTitle The solution
-      p.solutionParagraph
-        | Indebox to the rescue!
-      p.solutionParagraph
-        | Install Indebox and use it to open InDesign-files. And you won't event notice it, your work will just be better.
+      .solutionParagraphContainer
+        p.solutionParagraph
+          | Indebox to the rescue!
+        p.solutionParagraph
+          | Install Indebox and use it to open InDesign-files. And you won't event notice it, your work will just be better.
 
     .download
       h2.downloadTitle Download Indebox
       .downloadRequirementsFullfilled
-        p.downloadParagraph
-          | Indebox requires OS X El Capitan, Dropbox and InDesign CC 2015.
         button.downloadButton
           span.downloadButtonIcon
             svg.downloadButtonIconSvg(xmlns="http://www.w3.org/2000/svg", viewBox="0 -40 168 170")
               polygon.downloadButtonIconArrow(points="121.59 34.09 95 51.18 95 0 75 0 75 51.18 48.41 34.09 37.59 50.91 85 81.39 132.41 50.91 121.59 34.09")
               polygon.downloadButtonIconCaret(points="170 70 150 70 150 110 20 110 20 70 0 70 0 130 170 130 170 70")
           span.downloadButtonSpan Download
+        p.downloadParagraph
+          | Indebox requires OS X El Capitan, Dropbox and InDesign CC 2015.
         p.downloadParagraph
           | Read more about installation and usage <a href="#">here</a>.
       .downloadRequirementsUnfullfilled

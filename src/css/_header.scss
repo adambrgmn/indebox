@@ -5,8 +5,8 @@
   padding: 0 10px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  background: #f57153;
+  justify-content: space-around;
+  background: $tomato;
 }
 
 .headerTitleContainer, .headerSubtitleContainer, .headerButtonContainer {
@@ -23,19 +23,29 @@
   font-size: 4rem;
   text-align: center;
   text-transform: uppercase;
+  @media screen and (min-width: $break-medium) {
+    font-size: 8rem;
+  }
 }
 
 .headerTitleLink {
-  color: #0000ff;
+  color: $blue;
   text-decoration: none;
+  transition: color 0.3s;
   &:hover {
-    color: #000075;
+    color: $bluedark;
   }
 }
 
 .headerSubtitleContainer {
   width: 100%;
   text-align: center;
+  @media screen and (min-width: $break-small) {
+    padding: 0 10%;
+  }
+  @media screen and (min-width: $break-large) {
+    padding: 0 25%;
+  }
 }
 
 .headerSubtitle {
