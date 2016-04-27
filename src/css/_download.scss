@@ -1,0 +1,126 @@
+// Variables
+$bgcolor: #85f7d8;
+$black: #333333;
+
+.download {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 75vh;
+  padding: 0 25px;
+  background: $bgcolor;
+}
+
+.downloadRequirementsUnfullfilled {
+  display: none;
+}
+
+.downloadTitle {
+  margin: 0 0 2rem 0;
+  font-size: 2rem;
+  line-height: 1.2;
+}
+
+.downloadParagraph {
+  margin: 0 0 1rem 0;
+}
+
+.downloadButton {
+  display: block;
+  position: relative;
+  z-index: 1;
+  width: 70px;
+  height: 70px;
+  min-width: 0;
+  max-width: 250%;
+  margin: 3em auto;
+  padding: 0;
+  vertical-align: middle;
+  border: none;
+  border-radius: 40px;
+  transition: color 0.3s;
+  backface-visibility: hidden;
+}
+
+.downloadButton:focus {
+  outline: none;
+}
+
+.downloadButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  z-index: -1;
+  box-shadow: inset 0 0 0 35px $black;
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.downloadButtonIcon {
+  width: 22px;
+  font-size: 22px;
+  font-family: 'Roboto Mono';
+  position: relative;
+  display: inline-block;
+  transform: translate(0, 0);
+  vertical-align: middle;
+  text-rendering: auto;
+  webkit-font-smoothing: antialiased;
+}
+
+.downloadButtonIconSvg {
+  overflow: visible;
+}
+
+.downloadButtonIconArrow, .downloadButtonIconCaret {
+  fill: $bgcolor;
+  transform: translate(0, 0);
+  transition: fill 0.3s, transform 0.3s;
+}
+
+.downloadButtonSpan {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  vertical-align: middle;
+}
+
+.downloadButton:hover {
+  color: $black;
+  background: $bgcolor;
+}
+
+.downloadButton:hover::before {
+  box-shadow: inset 0 0 0 2px $black;
+  transform: scale3d(1, 1, 1);
+}
+
+.downloadButton:hover .downloadButtonIconArrow, .downloadButton:hover .downloadButtonIconCaret {
+  fill: $black;
+}
+
+.downloadButton:hover .downloadButtonIconArrow {
+  animation: downloadArrowAnimation 3s infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes downloadArrowAnimation {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(0, 25px);
+  }
+  50% {
+    transform: translate(0, 0);
+  }
+  75% {
+    transform: translate(0, -25px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}

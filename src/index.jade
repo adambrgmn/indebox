@@ -89,9 +89,14 @@ html(lang="en", class="no-js", manifest=manifest)
       .downloadRequirementsFullfilled
         p.downloadParagraph
           | Indebox requires OS X El Capitan, Dropbox and InDesign CC 2015
+        button.downloadButton
+          span.downloadButtonIcon
+            svg.downloadButtonIconSvg(xmlns="http://www.w3.org/2000/svg", viewBox="0 -40 168 170")
+              polygon.downloadButtonIconArrow(points="121.59 34.09 95 51.18 95 0 75 0 75 51.18 48.41 34.09 37.59 50.91 85 81.39 132.41 50.91 121.59 34.09")
+              polygon.downloadButtonIconCaret(points="170 70 150 70 150 110 20 110 20 70 0 70 0 130 170 130 170 70")
+          span.downloadButtonSpan Download
         p.downloadParagraph
           | Read more about installation and usage <a href="#">here</a>.
-        button.downloadButton Download
       .downloadRequirementsUnfullfilled
         p.downloadParagraph
           | You seem to using a phone, and then you have no use of Indebox. Send notification to yourself so you can download it once you're by your computer.

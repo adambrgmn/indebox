@@ -1,12 +1,10 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto+Mono);
-// bower:scss
-// endbower
-
 @import "svg-objects";
 @import "header";
 @import "cooperation";
 @import "issue";
 @import "solution";
+@import "download";
 
 *, *::before, *::after {
   box-sizing: border-box;
