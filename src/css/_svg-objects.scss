@@ -7,8 +7,21 @@
   width: 50%;
   top: 40%;
   left: 60%;
+  animation: svgWaveAnimation 10s ease-in-out infinite;
   .svgWaveObject {
     fill: #333333;
+  }
+}
+
+@keyframes svgWaveAnimation {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(10%, 0);
+  }
+  100% {
+    transform: translate(0, 0);
   }
 }
 
@@ -16,8 +29,21 @@
   width: 30%;
   top: -2%;
   left: 75%;
+  animation: svgTriangleAnimation 5s ease-in-out infinite;
   .svgTriangleObject {
     fill: #ff0000;
+  }
+}
+
+@keyframes svgTriangleAnimation {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+  100% {
+    transform: rotate(0deg);
   }
 }
 
@@ -25,8 +51,21 @@
   width: 25%;
   top: 0;
   left: 10%;
+  animation: svgSquare1Animation 5s ease-in-out infinite;
   .svgSquare1Object {
     fill: #85f7d8;
+  }
+}
+
+@keyframes svgSquare1Animation {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(0, -100%);
+  }
+  100% {
+    transform: translate(0, 0);
   }
 }
 
@@ -34,8 +73,21 @@
   width: 25%;
   bottom: 0;
   left: 10%;
+  animation: svgSquare2Animation 5s ease-in-out infinite;
   .svgSquare2Object {
     fill: #85f7d8;
+  }
+}
+
+@keyframes svgSquare2Animation {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(0, 10%);
+  }
+  100% {
+    transform: translate(0, 0);
   }
 }
 
@@ -43,8 +95,21 @@
   width: 3%;
   top: 60%;
   left: 80%;
+  animation: svgLineAnimation 8s ease-in-out infinite;
   .svgLineObject {
     fill: #85f7d8;
+  }
+}
+
+@keyframes svgLineAnimation {
+  0% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(1, 0.7);
+  }
+  100% {
+    transform: scale(1, 1);
   }
 }
 
@@ -56,7 +121,20 @@
     fill: #0000ff;
   }
   .svgDotsObjectBottom {
+    animation: svgDotsObjectBottomAnimation 4s ease-in-out infinite;
     fill: #000075;
+  }
+}
+
+@keyframes svgDotsObjectBottomAnimation {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(-10%, -10%);
+  }
+  100% {
+    transform: translate(0, 0);
   }
 }
 
@@ -64,6 +142,7 @@
   width: 30%;
   top: 45%;
   left: 45%;
+  animation: svgCircleAnimation 15s linear infinite;
   .svgCircleObject1 {
     fill: #fcff83;
   }
@@ -72,11 +151,33 @@
   }
 }
 
+@keyframes svgCircleAnimation {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
 .svgBanner {
   width: 15%;
   top: 15%;
   left: 8%;
+  animation: svgBannerAnimation 2s linear infinite;
   .svgBannerObject {
     fill: #fcff83;
+  }
+}
+
+@keyframes svgBannerAnimation {
+  0% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(0.9, 0.9);
+  }
+  100% {
+    transform: scale(1, 1);
   }
 }

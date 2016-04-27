@@ -89,7 +89,6 @@
   left: 50%;
   padding: 0;
   margin-bottom: -10px;
-  font-size: 1em;
   transform: translate3d(-50%, 0, 0);
   transition: transform 0.3s;
   transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
@@ -103,7 +102,7 @@
 .headerButtonSpan {
   display: block;
   padding: 20px;
-  vertical-align: 0.3s;
+  vertical-align: middle;
   transition: transform 0.3s, opacity 0.3s;
   transition-delay: 0.3s;
 }

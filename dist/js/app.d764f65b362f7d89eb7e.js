@@ -1,1 +1,0 @@
-webpackJsonp([3,0],[function(e,t,u){"use strict";function n(e){return e&&e.__esModule?e:{"default":e}}var o=u(1),f=n(o);(0,f.default)("footer").hide(1e3)}]);

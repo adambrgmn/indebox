@@ -88,7 +88,7 @@ html(lang="en", class="no-js", manifest=manifest)
       h2.downloadTitle Download Indebox
       .downloadRequirementsFullfilled
         p.downloadParagraph
-          | Indebox requires OS X El Capitan, Dropbox and InDesign CC 2015
+          | Indebox requires OS X El Capitan, Dropbox and InDesign CC 2015.
         button.downloadButton
           span.downloadButtonIcon
             svg.downloadButtonIconSvg(xmlns="http://www.w3.org/2000/svg", viewBox="0 -40 168 170")
@@ -99,8 +99,26 @@ html(lang="en", class="no-js", manifest=manifest)
           | Read more about installation and usage <a href="#">here</a>.
       .downloadRequirementsUnfullfilled
         p.downloadParagraph
-          | You seem to using a phone, and then you have no use of Indebox. Send notification to yourself so you can download it once you're by your computer.
-        button.downloadNotifyButton Notify me!
+          | You seem to using a phone or at least not a Mac, and then you have no use of Indebox.
+        p.downloadParagraph
+          | Instead send a notification to yourself so you can download it once you're by your Mac.
+        .notify
+          .notifyForm
+            input.notifyInput(type="email", placeholder="your@mail.com")
+            button.notifyButton(type="submit")
+              span.notifyButtonSpan Notify me!
+              span.notifyButtonIcon
+                svg.notifyButtonIconSvg(xmlns="http://www.w3.org/2000/svg", viewBox="0 0 200 200")
+                  path(d="M0,25V175H200V25H0ZM61.19,97.4L20,139.27v-83ZM37,45H162.86L100,107.87Zm38.36,66.53L100,136.13l24.78-24.78L169.32,155H32.58Zm63.58-14.31L180,56.14v81.32Z")
+          .notifySent
+            p.downloadParagraph
+              strong
+                | Success! Check your inbox...
+
+
+    footer.footer
+      p.footerParagraph
+        | <strong>Disclaimer:</strong> Feel free to use this little app as you like and modify it to your needs. It works for me and I hope it works for you as well, even though I can't guarantee it. Use at own risk.
 
     each file, key in htmlWebpackPlugin.files.chunks
       script(src=file.entry)

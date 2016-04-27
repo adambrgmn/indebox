@@ -2,6 +2,10 @@
 $bgcolor: #85f7d8;
 $black: #333333;
 
+.downloadRequirementsFullfilled {
+  display: none;
+}
+
 .download {
   display: flex;
   flex-direction: column;
@@ -9,10 +13,6 @@ $black: #333333;
   min-height: 75vh;
   padding: 0 25px;
   background: $bgcolor;
-}
-
-.downloadRequirementsUnfullfilled {
-  display: none;
 }
 
 .downloadTitle {
@@ -25,6 +25,108 @@ $black: #333333;
   margin: 0 0 1rem 0;
 }
 
+// notify
+.notify {
+  margin-top: 40px;
+}
+
+.notifyForm {}
+.notifySent {
+  display: none;
+}
+
+.notifyInput {
+  float: left;
+  padding: 2px 5px;
+  width: 60%;
+  background: none;
+  border: none;
+  border-bottom: 2px solid $black;
+  transition: border 0.3s;
+}
+
+.notifyInput:focus {
+  outline: none;
+}
+
+.notifyInput.error {
+  border-color: red;
+}
+
+.notifyButton {
+  float: right;
+  overflow: hidden;
+  position: relative;
+  display: block;
+  width: 110px;
+  height: 30px;
+  background: none;
+  border: none;
+  z-index: 1;
+  backface-visibility: hidden;
+  cursor: pointer;
+}
+
+.notifyButton:focus {
+  outline: none;
+}
+
+.notifyButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 2px solid $black;
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 50% 100%, 50% 90%, 50% 90%, 50% 100%, 0% 100%, 0% 0%);
+  transform: translate3d(0, 100%, 0) translate3d(0, -2px, 0);
+  transform-origin: 50%, 100%;
+  transition: transform 0.3s, clip-path 1s;
+  transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+}
+
+.notifyButtonSpan {
+  display: block;
+  vertical-align: middle;
+  transition: transform 0.3s, opacity 0.3s;
+  transition-delay: 0.3s;
+}
+
+.notifyButtonIcon {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-bottom: -10px;
+  font-size: 1em;
+  transform: translate3d(-50%, 0, 0);
+  transition: transform 0.3s;
+  transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+}
+
+.notifyButtonIconSvg {
+  padding: 2px 0 0 0;
+  width: 20px;
+  height: 20px;
+}
+
+.notifyButton:hover::before {
+  transform: translate3d(0, 0, 0);
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 70% 100%, 70% 90%, 30% 90%, 30% 100%, 0% 100%, 0% 0%);
+}
+
+.notifyButton:hover .notifyButtonSpan {
+  opacity: 0;
+  transform: translate3d(0, -50%, 0);
+  transition-delay: 0s;
+}
+
+.notifyButton:hover .notifyButtonIcon {
+  transition-delay: 0.6s;
+  transform: translate3d(-50%, -100%, 0);
+}
+
+// downloadButton
 .downloadButton {
   display: block;
   position: relative;
@@ -40,6 +142,7 @@ $black: #333333;
   border-radius: 40px;
   transition: color 0.3s;
   backface-visibility: hidden;
+  cursor: pointer;
 }
 
 .downloadButton:focus {
