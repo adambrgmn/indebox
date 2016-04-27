@@ -1,0 +1,18 @@
+.solution {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 75vh;
+  padding: 0 25px;
+  background: #f57153;
+}
+
+.solutionTitle {
+  margin: 0 0 2rem 0;
+  font-size: 2rem;
+  line-height: 1.2;
+}
+
+.solutionParagraph {
+  margin: 0 0 1rem 0;
+}

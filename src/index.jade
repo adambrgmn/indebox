@@ -13,6 +13,8 @@ html(lang="en", class="no-js", manifest=manifest)
     meta(name="viewport", content="width=device-width, initial-scale=1")
     title
       | #{htmlWebpackPlugin.options.title} | #{htmlWebpackPlugin.options.tagline}
+
+    link(href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.min.css", rel="stylesheet")
     each file, index in htmlWebpackPlugin.files.css
       link(href=file, rel="stylesheet")
   body
@@ -62,33 +64,38 @@ html(lang="en", class="no-js", manifest=manifest)
             | Download Indebox
 
     .cooperation
-      h2.cooperationTitle
-        | For better cooperation
+      h2.cooperationTitle For better cooperation
       p.cooperationParagraph
         | Indebox is a small, almost invisible, app that will make your teams daily work easier.
       p.cooperationParagraph
         | It will make Dropbox and InDesign work together.
 
+    .issue
+      h2.issueTitle The issue
+      p.issueParagraph
+        | InDesign is a great tool. And so is Dropbox. But they don't work that great together, as you may have noticed.
+      p.issueParagraph
+        | If you sync InDesign-documents with Dropbox a disaster may occur if one of your collegues open the same document as you.
 
+    .solution
+      h2.solutionTitle The solution
+      p.solutionParagraph
+        | Indebox to the rescue!
+      p.solutionParagraph
+        | Install Indebox and use it to open InDesign-files. And you won't event notice it, your work will just be better.
 
-    //- <div class="issue">
-    //-   <h2 class="issueTitle">The issue</h2>
-    //-   <p class="issueParagraph">InDesign is a great tool. And so is Dropbox. But they don't work that great together, as you may have noticed. If you sync InDesign-documents with Dropbox a disaster may occur if one of your collegues open the same document as you.</p>
-    //- </div>
-
-    //- <div class="solution">
-    //-   <h2 class="mainTitle">The solution</h2>
-    //-   <p class="mainParagraph">Indebox to the rescue! Install Indebox and use it to open InDesign-files. And you won't event notice it, your work will just be better.</p>
-    //-   <p class="mainParagraph">Read more about installation <a href="#">here</a></p>
-    //- </div>
-
-    //- <div class="download">
-    //-   <h2 class="downloadTitle">Download Indebox</h2>
-    //- </div>
-
-    //- <footer class="footer">
-    //-   <p>This app is made as a personal project. It works for me, and I hope it works for you!</p>
-    //- </footer>
+    .download
+      h2.downloadTitle Download Indebox
+      .downloadRequirementsFullfilled
+        p.downloadParagraph
+          | Indebox requires OS X El Capitan, Dropbox and InDesign CC 2015
+        p.downloadParagraph
+          | Read more about installation and usage <a href="#">here</a>.
+        button.downloadButton Download
+      .downloadRequirementsUnfullfilled
+        p.downloadParagraph
+          | You seem to using a phone, and then you have no use of Indebox. Send notification to yourself so you can download it once you're by your computer.
+        button.downloadNotifyButton Notify me!
 
     each file, key in htmlWebpackPlugin.files.chunks
       script(src=file.entry)

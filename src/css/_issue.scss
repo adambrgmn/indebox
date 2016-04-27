@@ -1,0 +1,18 @@
+.issue {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 75vh;
+  padding: 0 25px;
+  background: #fcff83;
+}
+
+.issueTitle {
+  margin: 0 0 2rem 0;
+  font-size: 2rem;
+  line-height: 1.2;
+}
+
+.issueParagraph {
+  margin: 0 0 1rem 0;
+}

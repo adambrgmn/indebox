@@ -61,6 +61,7 @@
   position: relative;
   z-index: 1;
   backface-visibility: hidden;
+  cursor: pointer;
 }
 
 .headerButton:focus {
@@ -75,11 +76,10 @@
   width: 100%;
   height: 100%;
   border: 2px solid;
-  // clip-path: url(#clipBox);
-  clip-path: polygon(50% 76%, 0% 100%, 100% 100%);
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 50% 100%, 50% 90%, 50% 90%, 50% 100%, 0% 100%, 0% 0%);
   transform: translate3d(0, 100%, 0) translate3d(0, -2px, 0);
   transform-origin: 50%, 100%;
-  transition: transform 0.3s;
+  transition: transform 0.3s, clip-path 1s;
   transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
 }
 
@@ -111,6 +111,7 @@
 
 .headerButton:hover::before {
   transform: translate3d(0, 0, 0);
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 70% 100%, 70% 90%, 30% 90%, 30% 100%, 0% 100%, 0% 0%);
 }
 
 .headerButton:hover .headerButtonIcon {

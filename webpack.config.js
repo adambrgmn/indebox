@@ -38,9 +38,10 @@ const common = {
       },
     ],
   },
-  postcss: function () {
-    return [autoprefixer];
-  },
+  // postcss: function () {
+  //   return [autoprefixer];
+  // },
+  postcss: () => [autoprefixer],
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.jade',
@@ -60,7 +61,7 @@ if (TARGET === 'start' || !TARGET) {
     devServer: {
       contentBase: PATHS.build,
       historyApiFallback: true,
-      hot: false,
+      hot: true,
       inline: true,
       progress: true,
       stats: 'errors-only',
@@ -87,6 +88,7 @@ if (TARGET === 'start' || !TARGET) {
       ],
     },
     plugins: [
+      new webpack.HotModuleReplacementPlugin(),
       new webpack.NoErrorsPlugin(),
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify('development'),
