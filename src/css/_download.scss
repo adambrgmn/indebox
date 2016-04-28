@@ -3,11 +3,13 @@
 }
 
 .download {
+  position: relative;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-content: center;
+  padding: 0 2rem;
   min-height: 75vh;
-  padding: 0 25px;
   background: $turqoise;
   @media screen and (min-width: $break-small) {
     padding: 50px 100px;
@@ -21,12 +23,14 @@
   margin: 0 0 2rem 0;
   font-size: 2rem;
   line-height: 1.2;
-  text-align: center;
 }
 
 .downloadParagraph {
   margin: 0 0 1rem 0;
   text-align: center;
+  &:last-of-type {
+    margin: 0;
+  }
 }
 
 // notify

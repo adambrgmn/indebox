@@ -38,10 +38,10 @@ const common = {
       },
     ],
   },
-  // postcss: function () {
-  //   return [autoprefixer];
-  // },
   postcss: () => [autoprefixer],
+  sassLoader: {
+    data: `$env: '${TARGET}';`,
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.jade',
@@ -83,7 +83,7 @@ if (TARGET === 'start' || !TARGET) {
         },
         {
           test: /\.scss$/,
-          loaders: ['style', 'css', 'postcss', 'sass'],
+          loaders: ['style', 'css?sourceMap', 'postcss?sourceMap', 'sass?sourceMap'],
         },
       ],
     },

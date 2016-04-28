@@ -1,8 +1,10 @@
 .cooperation {
+  position: relative;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 0 25px;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-content: center;
+  padding: 0 2rem;
   min-height: 75vh;
   background: $turqoise;
   @media screen and (min-width: $break-small) {
@@ -11,12 +13,6 @@
   }
   @media screen and (min-width: $break-large) {
     padding: 0 15%;
-  }
-}
-
-.cooperationTitle {
-  @media screen and (min-width: $break-small) {
-    padding-right: 25px;
   }
 }
 
@@ -31,6 +27,9 @@
   margin: 0 0 2rem 0;
   font-size: 2rem;
   line-height: 1.2;
+  @media screen and (min-width: $break-small) {
+    padding-right: 25px;
+  }
 }
 
 .cooperationParagraph {

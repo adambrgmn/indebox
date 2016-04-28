@@ -1,11 +1,16 @@
 .footer {
+  position: relative;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 50px 25px;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-content: center;
+  padding: 2rem;
   background: $yellow;
 }
 
 .footerParagraph {
   margin: 0 0 1rem 0;
+  &:last-child {
+    margin: 0;
+  }
 }

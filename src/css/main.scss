@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto+Mono:400,700);
+@import url(https://fonts.googleapis.com/css?family=Roboto+Mono:400,400italic,700);
 @import "variables";
 @import "svg-objects";
 @import "header";
@@ -28,11 +28,12 @@ body {
   color: $black;
 }
 
-a {
+.link {
+  white-space: nowrap;
   position: relative;
   color: $black;
   text-decoration: none;
-  &::after {
+  &::before {
     content: '';
     position: absolute;
     top: 100%;
@@ -40,13 +41,51 @@ a {
     width: 100%;
     height: 2px;
     background: $black;
-    transition: transform 0.3s;
+    transition: all 0.3s;
+    transition-delay: 0.3s;
+  }
+  &::after {
+    content: attr(href);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    font-style: italic;
+    font-size: 0.8rem;
+    opacity: 0;
+    transition: opacity 0.3s;
+    transition-delay: 0s;
+  }
+  &:hover::before {
+    top: 200%;
+    transition-delay: 0s;
   }
   &:hover::after {
-    transform: translate(0, 5px);
+    opacity: 0.75;
+    transition-delay: 0.3s;
   }
 }
 
 strong {
   font-weight: 700;
+}
+
+// Debug options
+@if $env == 'start' {
+  body::before {
+    content: 'xsmall';
+    @media screen and (min-width: $break-small) {
+      content: 'small';
+    }
+    @media screen and (min-width: $break-medium) {
+      content: 'medium';
+    }
+    @media screen and (min-width: $break-large) {
+      content: 'large';
+    }
+    @media screen and (min-width: $break-xlarge) {
+      content: 'xlarge';
+    }
+  }
 }

@@ -1,9 +1,11 @@
 .issue {
+  position: relative;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-content: center;
   min-height: 75vh;
-  padding: 0 25px;
+  padding: 0 2rem;
   background: $yellow;
   @media screen and (min-width: $break-small) {
     flex-direction: row;
@@ -11,12 +13,6 @@
   }
   @media screen and (min-width: $break-large) {
     padding: 0 15%;
-  }
-}
-
-.issueTitle {
-  @media screen and (min-width: $break-small) {
-    padding-right: 25px;
   }
 }
 
@@ -28,9 +24,13 @@
 }
 
 .issueTitle {
+  width: 100%;
   margin: 0 0 2rem 0;
   font-size: 2rem;
   line-height: 1.2;
+  @media screen and (min-width: $break-small) {
+    padding-right: 25px;
+  }
 }
 
 .issueParagraph {
