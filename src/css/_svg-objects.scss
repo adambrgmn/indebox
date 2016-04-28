@@ -91,6 +91,9 @@
   @media screen and (min-width: $break-medium) {
     width: 30%;
   }
+  @media screen and (min-width: $break-large) {
+    width: 10%;
+  }
   @media screen and (min-width: $break-xlarge) {
     width: 5%;
   }
@@ -121,6 +124,9 @@
   }
   @media screen and (min-width: $break-medium) {
     width: 30%;
+  }
+  @media screen and (min-width: $break-large) {
+    width: 10%;
   }
   @media screen and (min-width: $break-xlarge) {
     width: 5%;

@@ -101,7 +101,7 @@ html(lang="en", class="no-js", manifest=manifest)
         p.downloadParagraph
           | Indebox requires OS X El Capitan, Dropbox and InDesign CC 2015.
         p.downloadParagraph
-          | Read more about installation and usage <a class="link" href="#">here</a>.
+          | Read more about installation and usage <a class="link" href="https://github.com/adambrgmn/indebox/">here</a>.
       .downloadRequirementsUnfullfilled
         p.downloadParagraph
           | You seem to be using a phone or at least not a Mac, and then you have no use of Indebox.
@@ -127,4 +127,24 @@ html(lang="en", class="no-js", manifest=manifest)
 
     each file, key in htmlWebpackPlugin.files.chunks
       script(src=file.entry)
+
+    script.
+      var trackID, domainID;
+      trackID = ''; //eg: 'UA-34398778-4'.
+      domainID = ''; //eg: 'studio7designs.com'.
+      (function (i, s, o, g, r, a, m) {
+          i['GoogleAnalyticsObject'] = r;
+          i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments);
+          },
+          i[r].l = 1 * new Date();
+          a = s.createElement(o),
+          m = s.getElementsByTagName(o)[0];
+          a.async = 1;
+          a.defer = 1;
+          a.src = g;
+          m.parentNode.insertBefore(a,m)
+        })(window, document, 'script','//www.google-analytics.com/analytics.js', 'ga');
+      ga('create', trackID, domainID);
+      ga('send', 'pageview');
 </html>

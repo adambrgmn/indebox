@@ -14,8 +14,16 @@
   @media screen and (min-width: $break-small) {
     padding: 50px 100px;
   }
+  @media screen and (min-width: $break-medium) {
+    min-height: 50vh;
+    padding: 0 14rem;
+  }
   @media screen and (min-width: $break-large) {
-    padding: 0 25%;
+    padding: 3rem 20rem;
+    min-height: 75vh;
+  }
+  @media screen and (min-width: $break-xlarge) {
+    padding: 3rem 45rem;
   }
 }
 
