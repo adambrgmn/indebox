@@ -56,6 +56,9 @@
 .headerButtonContainer {
   width: 100%;
   padding-bottom: 65px;
+  @media screen and (min-width: $break-small) {
+    padding-bottom: 0;
+  }
 }
 
 .headerButton {
