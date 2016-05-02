@@ -11,16 +11,33 @@ function toggleSent() {
 }
 
 function sendData(noTimeout) {
-  const timeout = onMac() || noTimeout ? 0 : 1000;
+  // const timeout = onMac() || noTimeout ? 0 : 1000;
   const email = notifyInput.val();
   const valid = validEmail(email);
 
   if (valid) {
-    setTimeout(() => toggleSent(), timeout);
-    setTimeout(() => {
-      $('.notifyInput').val('');
-      toggleSent();
-    }, 5000);
+    $.getJSON('http://localhost:3000/send?callback?', {
+      to: email,
+      subject: 'A small reminder',
+      text: ' A small reminder to download Indebox app',
+    })
+      .done((data) => {
+        console.log('From done');
+        console.log(data);
+        toggleSent();
+      })
+      .fail((err) => {
+        console.log('From fail');
+        console.log(err);
+      })
+      .always(() => {
+        console.log('From always');
+        setTimeout(() => {
+          $('.notifyInput').val('');
+          toggleSent();
+        }, 5000);
+      });
+    // setTimeout(() => toggleSent(), timeout);
   } else {
     notifyInput.addClass('error');
   }
